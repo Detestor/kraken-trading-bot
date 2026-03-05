@@ -1,0 +1,46 @@
+from __future__ import annotations
+import os
+import ccxt
+from dotenv import load_dotenv
+
+class KrakenExecutor:
+    def __init__(self):
+        load_dotenv()
+        api_key = os.getenv("KRAKEN_API_KEY","").strip()
+        secret = os.getenv("KRAKEN_API_SECRET","").strip()
+        if not api_key or not secret:
+            raise ValueError("Missing KRAKEN_API_KEY / KRAKEN_API_SECRET env vars")
+        self.ex = ccxt.kraken({"apiKey": api_key, "secret": secret, "enableRateLimit": True})
+
+    def fetch_balance(self) -> dict:
+        return self.ex.fetch_balance()
+
+    def fetch_ticker(self, symbol: str) -> dict:
+        return self.ex.fetch_ticker(symbol)
+
+    def fetch_open_orders(self, symbol: str) -> list:
+        return self.ex.fetch_open_orders(symbol)
+
+    def cancel_order(self, order_id: str, symbol: str):
+        return self.ex.cancel_order(order_id, symbol)
+
+    def p(self, symbol: str, price: float) -> str:
+        return self.ex.price_to_precision(symbol, price)
+
+    def a(self, symbol: str, amount: float) -> str:
+        return self.ex.amount_to_precision(symbol, amount)
+
+    def create_market_buy(self, symbol: str, amount_base: float) -> dict:
+        return self.ex.create_order(symbol, "market", "buy", self.a(symbol, amount_base))
+
+    def create_market_sell(self, symbol: str, amount_base: float) -> dict:
+        return self.ex.create_order(symbol, "market", "sell", self.a(symbol, amount_base))
+
+    def create_stop_loss_sell(self, symbol: str, amount_base: float, stop_price: float) -> dict:
+        amt = self.a(symbol, amount_base)
+        trigger = float(stop_price)
+        limit_exec = trigger * 0.999
+        trigger_s = self.p(symbol, trigger)
+        limit_s = self.p(symbol, limit_exec)
+        params = {"trading_agreement":"agree", "price": trigger_s, "price2": limit_s}
+        return self.ex.create_order(symbol, "stop-loss-limit", "sell", amt, trigger_s, params=params)
