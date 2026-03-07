@@ -118,4 +118,4 @@ def format_status_message(state: dict[str, Any]) -> str:
         f"- Ultimo evento: {state.get('last_event')}",
         f"- Ultimo errore: {state.get('last_error')}",
     ]
-    return "\\n".join(lines)
+    return "\n".join(lines)
