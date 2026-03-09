@@ -9,6 +9,7 @@ class KrakenExecutor:
         if not api_key or not secret:
             raise ValueError("Missing KRAKEN_API_KEY / KRAKEN_API_SECRET env vars")
         self.ex = ccxt.kraken({"apiKey": api_key, "secret": secret, "enableRateLimit": True})
+
     def fetch_balance(self):
         return self.ex.fetch_balance()
     def fetch_ticker(self, symbol):

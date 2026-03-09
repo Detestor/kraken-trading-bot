@@ -9,5 +9,6 @@ def ai_recommendation(context):
         f"- regime: {context.get('regime')}\n"
         f"- price: {context.get('price')}\n"
         f"- signal: {context.get('signal')}\n"
+        f"- mode: {context.get('mode')}\n"
         "Nota: AI v0 non decide trade."
     )

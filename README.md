@@ -1,11 +1,16 @@
-# KrakenBot FAST v3
+# KrakenBot Hydra
 
-Versione più veloce:
-- timeframe 5m
-- segnali più frequenti
-- target e stop più stretti
-- `/status`
-- `/lasttrades`
-- `/closepositionnow`
+Bot unico con due teste:
+- FAST
+- SCALPER
 
-È una versione più aggressiva. Testala con importi piccoli.
+Comandi Telegram:
+- /status
+- /lasttrades
+- /closepositionnow
+- /mode auto
+- /mode fast
+- /mode scalper
+- /help
+
+Versione più aggressiva. Testala con importi piccoli.
