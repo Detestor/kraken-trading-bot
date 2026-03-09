@@ -1,13 +1,13 @@
 symbol: "BTC/EUR"
-timeframe: "1h"
+timeframe: "5m"
 ohlcv_limit: 500
 spend_pct: 0.50
 min_trade_eur: 6.0
 
 strategy_A:
-  sl_atr: 1.5
-  tp_atr: 3.0
+  sl_atr: 0.7
+  tp_atr: 1.1
 
 strategy_B:
-  sl_atr: 1.0
-  tp_atr: 1.2
+  sl_atr: 0.6
+  tp_atr: 0.9

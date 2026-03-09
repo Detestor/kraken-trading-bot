@@ -1,14 +1,13 @@
-from __future__ import annotations
 import pandas as pd
 
-def atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
+def atr(df, period=14):
     hl = df["high"] - df["low"]
     hc = (df["high"] - df["close"].shift()).abs()
     lc = (df["low"] - df["close"].shift()).abs()
     tr = pd.concat([hl, hc, lc], axis=1).max(axis=1)
     return tr.rolling(period).mean()
 
-def adx(df: pd.DataFrame, period: int = 14) -> pd.Series:
+def adx(df, period=14):
     d = df.copy()
     up = d["high"].diff()
     down = -d["low"].diff()
@@ -20,7 +19,7 @@ def adx(df: pd.DataFrame, period: int = 14) -> pd.Series:
     dx = (plus_di - minus_di).abs() / ((plus_di + minus_di) + 1e-9) * 100
     return dx.rolling(period).mean()
 
-def rsi(close: pd.Series, period: int = 14) -> pd.Series:
+def rsi(close, period=14):
     delta = close.diff()
     gain = delta.clip(lower=0)
     loss = -delta.clip(upper=0)

@@ -1,21 +1,11 @@
-# KrakenBotVPS v2
-Questa versione aggiunge:
+# KrakenBot FAST v3
+
+Versione più veloce:
+- timeframe 5m
+- segnali più frequenti
+- target e stop più stretti
 - `/status`
 - `/lasttrades`
-- `runtime/state.json`
-- `runtime/trades.csv`
-- rilevamento posizione corretto con free/total + open orders
-- fix sui falsi "posizione chiusa"
+- `/closepositionnow`
 
-## Render
-Compatibile con Render Background Worker.
-Dopo l'update fai:
-1. commit su GitHub
-2. Render -> Manual Deploy -> Deploy latest commit
-
-## Telegram
-Comandi:
-- `/status`
-- `/lasttrades`
-- `/ping`
-- `/help`
+È una versione più aggressiva. Testala con importi piccoli.
