@@ -1,5 +1,4 @@
 from __future__ import annotations
-import numpy as np
 import pandas as pd
 
 def atr(df: pd.DataFrame, period: int = 14) -> pd.Series:

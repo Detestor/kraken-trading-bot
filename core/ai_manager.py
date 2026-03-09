@@ -2,7 +2,7 @@ from __future__ import annotations
 import os
 
 def ai_enabled() -> bool:
-    return os.getenv("AI_MODE","off").strip().lower() in {"1","true","on","yes"}
+    return os.getenv("AI_MODE", "off").strip().lower() in {"1", "true", "on", "yes"}
 
 def ai_recommendation(context: dict) -> str:
     return (

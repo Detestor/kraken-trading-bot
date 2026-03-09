@@ -1,5 +1,4 @@
 from __future__ import annotations
-import time
 
 def safe_float(x, default=0.0) -> float:
     try:

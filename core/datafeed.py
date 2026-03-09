@@ -8,4 +8,4 @@ class DataFeed:
 
     def fetch_ohlcv(self, symbol: str, timeframe: str = "1h", limit: int = 500) -> pd.DataFrame:
         ohlcv = self.ex.fetch_ohlcv(symbol, timeframe=timeframe, limit=limit)
-        return pd.DataFrame(ohlcv, columns=["ts","open","high","low","close","volume"])
+        return pd.DataFrame(ohlcv, columns=["ts", "open", "high", "low", "close", "volume"])

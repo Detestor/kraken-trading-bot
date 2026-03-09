@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 class KrakenExecutor:
     def __init__(self):
         load_dotenv()
-        api_key = os.getenv("KRAKEN_API_KEY","").strip()
-        secret = os.getenv("KRAKEN_API_SECRET","").strip()
+        api_key = os.getenv("KRAKEN_API_KEY", "").strip()
+        secret = os.getenv("KRAKEN_API_SECRET", "").strip()
         if not api_key or not secret:
             raise ValueError("Missing KRAKEN_API_KEY / KRAKEN_API_SECRET env vars")
         self.ex = ccxt.kraken({"apiKey": api_key, "secret": secret, "enableRateLimit": True})
@@ -42,5 +42,5 @@ class KrakenExecutor:
         limit_exec = trigger * 0.999
         trigger_s = self.p(symbol, trigger)
         limit_s = self.p(symbol, limit_exec)
-        params = {"trading_agreement":"agree", "price": trigger_s, "price2": limit_s}
+        params = {"trading_agreement": "agree", "price": trigger_s, "price2": limit_s}
         return self.ex.create_order(symbol, "stop-loss-limit", "sell", amt, trigger_s, params=params)
