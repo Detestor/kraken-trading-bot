@@ -1,19 +1,20 @@
+# KrakenBot Leviathan v4
 
-KrakenBot Leviathan
+Questa versione include:
+- v1: multi-pair maker base
+- v2: grid + cancel/replace
+- v3: adaptive spread + inventory control
+- v4: auto pair selection + telegram control + stats/state
 
-Multi‑pair market‑maker bot for Kraken Spot.
+## Comandi Telegram
+/status
+/lasttrades
+/pause
+/resume
+/pairs
+/inventory
+/help
 
-Strategy
---------
-Places LIMIT BUY below market and LIMIT SELL above market
-to capture spread oscillations.
-
-Default pairs:
-BTC/EUR
-ETH/EUR
-SOL/EUR
-XRP/EUR
-DOGE/EUR
-
-Important:
-Use small size and test first.
+## Importante
+Usa solo LIMIT orders da maker.
+Non garantisce profitto. Con capitale piccolo va testata con calma.
