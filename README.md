@@ -1,16 +1,19 @@
-# KrakenBot Hydra
 
-Bot unico con due teste:
-- FAST
-- SCALPER
+KrakenBot Leviathan
 
-Comandi Telegram:
-- /status
-- /lasttrades
-- /closepositionnow
-- /mode auto
-- /mode fast
-- /mode scalper
-- /help
+Multi‑pair market‑maker bot for Kraken Spot.
 
-Versione più aggressiva. Testala con importi piccoli.
+Strategy
+--------
+Places LIMIT BUY below market and LIMIT SELL above market
+to capture spread oscillations.
+
+Default pairs:
+BTC/EUR
+ETH/EUR
+SOL/EUR
+XRP/EUR
+DOGE/EUR
+
+Important:
+Use small size and test first.
