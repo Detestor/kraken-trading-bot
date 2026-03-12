@@ -2,13 +2,15 @@
 pairs:
   - BTC/EUR
   - ETH/EUR
-  - XRP/EUR
 
 trading:
-  order_size_eur: 2
-  min_profit_buffer: 0.002
+  order_size_eur: 5
   fee_rate: 0.0016
-  max_inventory_eur: 15
+  min_profit_buffer: 0.002
+  spread_multiplier: 1.2
+
+risk:
+  max_inventory_eur: 20
 
 runtime:
   sleep_seconds: 20

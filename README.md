@@ -1,11 +1,9 @@
 
-KrakenBot Leviathan v5
+Leviathan v6 — Anti‑Bleed Engine
 
 Features
-- fee aware profit calculation
-- break-even sell logic
-- telegram alerts
-- simple inventory tracking
-
-Important:
-Bot sells only if price > break-even including fees.
+- fee aware trading
+- minimum volume detection
+- break-even + profit buffer
+- inventory manager
+- Telegram alerts

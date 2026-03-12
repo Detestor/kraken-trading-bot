@@ -1,10 +1,11 @@
 
-import os,requests
+import os, requests
+
 TOKEN=os.getenv("TELEGRAM_TOKEN")
 CHAT=os.getenv("TELEGRAM_CHAT_ID")
 
 def send(msg):
-    if not TOKEN:
+    if not TOKEN or not CHAT:
         return
     try:
         requests.post(
@@ -12,5 +13,5 @@ def send(msg):
             json={"chat_id":CHAT,"text":msg},
             timeout=10
         )
-    except:
+    except Exception:
         pass

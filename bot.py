@@ -1,8 +1,9 @@
 
-import time,yaml
+import time, yaml
 from core.exchange import Kraken
-from core.profit import break_even_sell
+from core.profit import break_even
 from core.telegram import send
+from core.utils import safe_float
 
 cfg=yaml.safe_load(open("config.yaml"))
 
@@ -10,12 +11,16 @@ pairs=cfg["pairs"]
 order_size=cfg["trading"]["order_size_eur"]
 fee=cfg["trading"]["fee_rate"]
 buffer=cfg["trading"]["min_profit_buffer"]
+spread_mult=cfg["trading"]["spread_multiplier"]
 sleep=cfg["runtime"]["sleep_seconds"]
 
 ex=Kraken()
+
 inventory={}
 
-send("Leviathan v5 started")
+send("🐋 Leviathan v6 Anti‑Bleed Engine started")
+
+markets=ex.markets()
 
 while True:
 
@@ -26,17 +31,19 @@ while True:
         for pair in pairs:
 
             ticker=ex.ticker(pair)
-            price=ticker["last"]
+            price=safe_float(ticker["last"])
 
             base,quote=pair.split("/")
 
             eur=bal["free"].get("EUR",0)
 
-            amount=order_size/price
+            min_vol=markets[pair]["limits"]["amount"]["min"]
 
-            if eur>order_size:
+            amount=max(order_size/price, min_vol)
 
-                buy_price=price*0.998
+            buy_price=price*(1-0.002)
+
+            if eur>order_size and pair not in inventory:
 
                 ex.buy(pair,buy_price,amount)
 
@@ -52,13 +59,13 @@ while True:
                 entry=inventory[pair]["entry"]
                 amount=inventory[pair]["amount"]
 
-                target=break_even_sell(entry,fee,buffer)
+                target=break_even(entry,fee,buffer)*spread_mult
 
-                if price>target:
+                if price>=target:
 
                     ex.sell(pair,price,amount)
 
-                    send(f"SELL {pair} {price} profit")
+                    send(f"SELL {pair} {price} net profit")
 
                     del inventory[pair]
 
