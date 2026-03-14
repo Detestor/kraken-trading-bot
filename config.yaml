@@ -1,0 +1,14 @@
+
+pairs:
+  - BTC/EUR
+  - ETH/EUR
+
+trading:
+  order_size_eur: 5
+  fee_rate: 0.0016
+  min_profit_buffer: 0.002
+  spread_multiplier: 1.2
+  entry_discount: 0.002
+
+runtime:
+  sleep_seconds: 20
