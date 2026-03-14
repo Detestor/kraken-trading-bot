@@ -1,6 +1,0 @@
-
-ccxt
-python-dotenv
-requests
-pandas
-PyYAML
