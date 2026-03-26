@@ -1,0 +1,22 @@
+pairs:
+  - BTC/EUR
+
+trading:
+  order_size_eur: 4
+  fee_rate: 0.0016
+  min_profit_buffer: 0.004
+  entry_discount: 0.0015
+  order_ttl_seconds: 60
+  stop_loss_pct: 0.003
+  trailing_enabled: true
+  trailing_distance_pct: 0.0025
+  break_even_trigger_pct: 0.0025
+  stoploss_cooldown_seconds: 3600
+  max_simultaneous_positions: 1
+  auto_close_unmanaged: true
+  max_daily_loss_eur: 0.40
+  max_daily_stop_count: 2
+  min_equity_to_trade: 15.0
+
+runtime:
+  sleep_seconds: 20
